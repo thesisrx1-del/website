@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ThesisRx — Medical Thesis Support for Indian Residents</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0b1f3a;
+    --navy-mid: #162d50;
+    --teal: #0e9f89;
+    --teal-light: #d1f0eb;
+    --gold: #c8973a;
+    --cream: #faf8f4;
+    --white: #ffffff;
+    --text-main: #1a2b3c;
+    --text-muted: #5a7490;
+    --border: #dde6ef;
+    --section-alt: #f2f6fb;
+    --radius: 12px;
+    --shadow: 0 4px 32px rgba(11,31,58,0.10);
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; color: var(--text-main); background: var(--white); font-size: 16px; line-height: 1.7; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(11,31,58,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; color: var(--white);
+    letter-spacing: -0.5px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .nav-logo span { color: var(--teal); }
+  .rx-icon {
+    width: 32px; height: 32px; background: var(--teal);
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem; font-weight: 700; color: white; font-family: 'DM Sans', sans-serif;
+  }
+  .nav-links { display: flex; gap: 2rem; align-items: center; }
+  .nav-links a {
+    color: rgba(255,255,255,0.75); text-decoration: none;
+    font-size: 0.9rem; font-weight: 400; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    background: var(--teal) !important; color: white !important;
+    padding: 0.45rem 1.2rem; border-radius: 8px; font-weight: 500 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: #0b8a76 !important; }
+  .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+  .hamburger span { width: 24px; height: 2px; background: white; display: block; }
+
+  /* HERO */
+  .hero {
+    background: var(--navy);
+    min-height: 92vh;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    padding: 5rem 2rem 4rem;
+  }
+  .hero-grid {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image: repeating-linear-gradient(0deg, #fff 0, #fff 1px, transparent 1px, transparent 60px),
+                      repeating-linear-gradient(90deg, #fff 0, #fff 1px, transparent 1px, transparent 60px);
+  }
+  .hero-glow {
+    position: absolute; width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(14,159,137,0.18) 0%, transparent 70%);
+    top: -100px; right: -100px; pointer-events: none;
+  }
+  .hero-inner {
+    position: relative; z-index: 1; text-align: center; max-width: 820px; margin: 0 auto;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(14,159,137,0.15); border: 1px solid rgba(14,159,137,0.4);
+    color: #7ee8d8; padding: 0.35rem 1rem; border-radius: 100px;
+    font-size: 0.82rem; letter-spacing: 0.04em; font-weight: 500; margin-bottom: 1.8rem;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+    color: var(--white); line-height: 1.2; margin-bottom: 1.4rem;
+    font-weight: 700;
+  }
+  .hero h1 em { color: var(--teal); font-style: italic; }
+  .hero-sub {
+    font-size: 1.05rem; color: rgba(255,255,255,0.65);
+    max-width: 600px; margin: 0 auto 2.5rem; font-weight: 300;
+  }
+  .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--teal); color: white; padding: 0.85rem 2rem;
+    border-radius: var(--radius); font-size: 1rem; font-weight: 500;
+    text-decoration: none; transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #0b8a76; transform: translateY(-2px); }
+  .btn-outline {
+    border: 1.5px solid rgba(255,255,255,0.3); color: white; padding: 0.85rem 2rem;
+    border-radius: var(--radius); font-size: 1rem; font-weight: 400;
+    text-decoration: none; transition: border-color 0.2s, background 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.07); }
+  .hero-stats {
+    display: flex; gap: 2.5rem; justify-content: center; margin-top: 4rem;
+    border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2.5rem; flex-wrap: wrap;
+  }
+  .hero-stat .num {
+    font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--teal); font-weight: 600;
+  }
+  .hero-stat .label { font-size: 0.82rem; color: rgba(255,255,255,0.5); margin-top: 2px; }
+
+  /* SECTION COMMONS */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1080px; margin: 0 auto; }
+  .section-tag {
+    font-size: 0.78rem; font-weight: 600; color: var(--teal);
+    text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700;
+    color: var(--text-main); line-height: 1.25; margin-bottom: 1rem;
+  }
+  .section-sub {
+    color: var(--text-muted); font-size: 1rem; max-width: 560px;
+    font-weight: 300; line-height: 1.75;
+  }
+
+  /* PAIN POINTS */
+  .pain { background: var(--section-alt); }
+  .pain-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .pain-card {
+    background: white; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.6rem;
+  }
+  .pain-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: #fff0f0; display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; margin-bottom: 1rem;
+  }
+  .pain-card h3 { font-size: 1rem; font-weight: 600; color: var(--text-main); margin-bottom: 0.4rem; }
+  .pain-card p { font-size: 0.88rem; color: var(--text-muted); }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .service-card {
+    border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 2rem; transition: box-shadow 0.2s, transform 0.2s; position: relative;
+  }
+  .service-card:hover { box-shadow: var(--shadow); transform: translateY(-4px); }
+  .service-card.featured {
+    border-color: var(--teal); background: var(--navy);
+  }
+  .service-badge {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--teal); color: white; font-size: 0.72rem; font-weight: 600;
+    padding: 0.25rem 0.9rem; border-radius: 100px; white-space: nowrap;
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .service-num {
+    font-family: 'Playfair Display', serif; font-size: 2.5rem;
+    color: var(--teal); font-weight: 600; line-height: 1; margin-bottom: 0.8rem;
+  }
+  .service-card h3 {
+    font-size: 1.15rem; font-weight: 600; margin-bottom: 0.6rem;
+    color: var(--text-main);
+  }
+  .service-card.featured h3 { color: white; }
+  .service-card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.2rem; line-height: 1.65; }
+  .service-card.featured p { color: rgba(255,255,255,0.65); }
+  .service-list { list-style: none; margin-bottom: 1.5rem; }
+  .service-list li {
+    font-size: 0.88rem; padding: 0.3rem 0;
+    display: flex; align-items: flex-start; gap: 8px;
+    color: var(--text-muted);
+  }
+  .service-card.featured .service-list li { color: rgba(255,255,255,0.65); }
+  .service-list li::before {
+    content: '✓'; color: var(--teal); font-weight: 700; flex-shrink: 0; margin-top: 2px;
+  }
+  .service-price {
+    font-family: 'Playfair Display', serif; font-size: 1.5rem;
+    font-weight: 700; color: var(--gold); margin-bottom: 0.2rem;
+  }
+  .service-price-note { font-size: 0.78rem; color: var(--text-muted); }
+  .service-card.featured .service-price-note { color: rgba(255,255,255,0.45); }
+
+  /* HOW IT WORKS */
+  .how { background: var(--cream); }
+  .steps-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0; margin-top: 3.5rem; position: relative;
+  }
+  .step {
+    text-align: center; padding: 0 1.5rem;
+    position: relative;
+  }
+  .step:not(:last-child)::after {
+    content: ''; position: absolute;
+    right: 0; top: 28px;
+    width: 1px; height: 30px;
+    background: var(--border);
+  }
+  .step-num {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--navy); color: white;
+    font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.2rem;
+  }
+  .step h4 { font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin-bottom: 0.4rem; }
+  .step p { font-size: 0.84rem; color: var(--text-muted); }
+
+  /* SPECIALTIES */
+  .spec-grid {
+    display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2.5rem;
+  }
+  .spec-pill {
+    background: var(--teal-light); color: #0a7060;
+    padding: 0.45rem 1rem; border-radius: 100px;
+    font-size: 0.85rem; font-weight: 500;
+    border: 1px solid rgba(14,159,137,0.25);
+  }
+
+  /* WHY US */
+  .why-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .why-card {
+    border-left: 3px solid var(--teal); padding: 1.2rem 1.4rem;
+    background: var(--section-alt); border-radius: 0 var(--radius) var(--radius) 0;
+  }
+  .why-card h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.35rem; }
+  .why-card p { font-size: 0.87rem; color: var(--text-muted); }
+
+  /* FAQ */
+  .faq { background: var(--section-alt); }
+  .faq-list { margin-top: 3rem; max-width: 720px; }
+  .faq-item {
+    border-bottom: 1px solid var(--border); padding: 1.3rem 0; cursor: pointer;
+  }
+  .faq-q {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.97rem; font-weight: 500; color: var(--text-main); gap: 1rem;
+  }
+  .faq-q .icon {
+    width: 22px; height: 22px; flex-shrink: 0;
+    color: var(--teal); font-size: 1.1rem; transition: transform 0.3s;
+  }
+  .faq-a {
+    font-size: 0.9rem; color: var(--text-muted); margin-top: 0.8rem;
+    display: none; line-height: 1.75;
+  }
+  .faq-item.open .faq-a { display: block; }
+  .faq-item.open .icon { transform: rotate(45deg); }
+
+  /* CTA */
+  .cta-section {
+    background: var(--navy); text-align: center; padding: 6rem 2rem;
+    position: relative; overflow: hidden;
+  }
+  .cta-glow {
+    position: absolute; width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(14,159,137,0.2) 0%, transparent 70%);
+    bottom: -200px; left: 50%; transform: translateX(-50%);
+  }
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 3rem);
+    color: white; margin-bottom: 1rem; position: relative;
+  }
+  .cta-section p { color: rgba(255,255,255,0.6); font-size: 1rem; margin-bottom: 2.5rem; position: relative; }
+  .cta-section .btn-primary { font-size: 1.05rem; padding: 1rem 2.5rem; position: relative; }
+
+  /* FOOTER */
+  footer {
+    background: #07142a; color: rgba(255,255,255,0.45);
+    padding: 2.5rem 2rem; text-align: center;
+  }
+  footer .footer-inner { max-width: 700px; margin: 0 auto; }
+  footer .footer-logo {
+    font-family: 'Playfair Display', serif; color: white; font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+  }
+  footer .footer-logo span { color: var(--teal); }
+  footer p { font-size: 0.82rem; line-height: 1.8; }
+  footer .footer-links { display: flex; gap: 1.5rem; justify-content: center; margin-top: 1rem; }
+  footer .footer-links a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 0.82rem; }
+  footer .footer-links a:hover { color: var(--teal); }
+  footer .disclaimer {
+    margin-top: 1.5rem; padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.77rem; color: rgba(255,255,255,0.3);
+  }
+
+  /* MOBILE */
+  @media (max-width: 680px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    nav { gap: 1rem; }
+    .step:not(:last-child)::after { display: none; }
+    .steps-grid { gap: 2rem; }
+    .hero-stats { gap: 1.5rem; }
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-inner > * {
+    animation: fadeUp 0.7s ease both;
+  }
+  .hero-inner > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-inner > *:nth-child(2) { animation-delay: 0.25s; }
+  .hero-inner > *:nth-child(3) { animation-delay: 0.4s; }
+  .hero-inner > *:nth-child(4) { animation-delay: 0.55s; }
+  .hero-inner > *:nth-child(5) { animation-delay: 0.7s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="rx-icon">Rx</div>
+    Thesis<span>Rx</span>
+  </div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#how">Process</a>
+    <a href="#specialties">Specialties</a>
+    <a href="#faq">FAQs</a>
+    <!-- REPLACE this href with your actual Google Form link -->
+    <a href="https://forms.gle/YOURFORMLINK" class="nav-cta" target="_blank">Get Started →</a>
+  </div>
+  <div class="hamburger" onclick="this.classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">🩺 For MD · MS · DNB · Diploma Residents across India</div>
+    <h1>Your Medical Thesis,<br/><em>Done Right.</em></h1>
+    <p class="hero-sub">
+      Expert support at every step — from choosing a publishable topic to writing a thesis that clears your university board on the first submission.
+    </p>
+    <div class="hero-btns">
+      <!-- REPLACE with your Google Form link -->
+      <a href="https://forms.gle/YOURFORMLINK" class="btn-primary" target="_blank">Start Your Thesis Journey →</a>
+      <a href="#services" class="btn-outline">See Services</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="num">100%</div>
+        <div class="label">Confidential</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">All India</div>
+        <div class="label">Universities Covered</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">End-to-End</div>
+        <div class="label">Thesis Support</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">On-Time</div>
+        <div class="label">Delivery Guaranteed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN POINTS -->
+<section class="pain">
+  <div class="container">
+    <div class="section-tag">Why Residents Struggle</div>
+    <h2 class="section-title">The Thesis Problem Every Resident Knows</h2>
+    <p class="section-sub">You're managing ward duties, OPDs, night calls — and you're somehow supposed to write a research thesis from scratch.</p>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-icon">😰</div>
+        <h3>No research background</h3>
+        <p>MBBS never trained you in biostatistics, research methodology, or ICMR guidelines.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">⏰</div>
+        <h3>Zero time</h3>
+        <p>12-hour hospital duties leave no bandwidth for literature searches or protocol writing.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">😕</div>
+        <h3>Guide is unavailable</h3>
+        <p>Your thesis guide is overworked too. Getting feedback takes weeks, not days.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">📋</div>
+        <h3>IEC & protocol rejections</h3>
+        <p>Protocol gets rejected by the ethics committee for avoidable formatting and methodology errors.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="section-tag">What We Offer</div>
+    <h2 class="section-title">Four Ways We Help You</h2>
+    <p class="section-sub">Pick exactly what you need — or go all the way with our complete end-to-end package.</p>
+    <div class="services-grid">
+
+      <!-- Service 1 -->
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <h3>Topic Brainstorming</h3>
+        <p>We help you identify a feasible, original, and publishable research topic suited to your specialty, department resources, and university timeline.</p>
+        <ul class="service-list">
+          <li>3–5 curated topic options with rationale</li>
+          <li>Feasibility check (data, patients, timeline)</li>
+          <li>Gap analysis from recent literature</li>
+          <li>Title framing for IEC approval</li>
+          <li>Delivered within 48–72 hours</li>
+        </ul>
+        <div class="service-price">
+          <span style="text-decoration:line-through; color:var(--text-muted); font-size:1rem; font-family:'DM Sans',sans-serif; font-weight:400;">₹1,000</span>
+          &nbsp;₹500
+        </div>
+        <div class="service-price-note">One-time · Specialty-specific</div>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <h3>Protocol Writing</h3>
+        <p>A complete, IEC-ready thesis protocol — the most critical and most rejected document in your residency.</p>
+        <ul class="service-list">
+          <li>Full protocol as per your university format</li>
+          <li>Introduction, Aims & Objectives, Review of Literature</li>
+          <li>Methodology, Inclusion/Exclusion criteria</li>
+          <li>Sample size calculation with justification</li>
+          <li>Statistical plan & ethical considerations</li>
+          <li>IEC/IRB application support</li>
+          <li>2 rounds of revision included</li>
+        </ul>
+        <div class="service-price">
+          <span style="text-decoration:line-through; color:var(--text-muted); font-size:1rem; font-family:'DM Sans',sans-serif; font-weight:400;">₹2,000</span>
+          &nbsp;₹1,500
+        </div>
+        <div class="service-price-note">One-time · University format included</div>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <h3>Literature Review & Discussion</h3>
+        <p>Comprehensive literature review and discussion chapters — the most time-consuming and intellectually demanding parts of any thesis.</p>
+        <ul class="service-list">
+          <li>Exhaustive literature search (PubMed, Cochrane, etc.)</li>
+          <li>Structured, thematic review of literature</li>
+          <li>Comparative discussion with your results</li>
+          <li>Limitations, conclusions & recommendations</li>
+          <li>Properly formatted references (Vancouver/APA)</li>
+          <li>2 rounds of revision included</li>
+        </ul>
+        <div class="service-price">
+          <span style="text-decoration:line-through; color:var(--text-muted); font-size:1rem; font-family:'DM Sans',sans-serif; font-weight:400;">₹18,000</span>
+          &nbsp;₹15,000
+        </div>
+        <div class="service-price-note">Based on specialty & scope</div>
+      </div>
+
+      <!-- Service 4 — Featured -->
+      <div class="service-card featured">
+        <div class="service-badge">⭐ Best Value</div>
+        <div class="service-num">04</div>
+        <h3>Complete Thesis Assistance</h3>
+        <p>From topic selection to final submission — every chapter, every revision, every correction. We stay with you until your thesis is approved.</p>
+        <ul class="service-list">
+          <li>Topic selection & title finalisation</li>
+          <li>Full IEC-ready protocol</li>
+          <li>All chapters: Introduction to Bibliography</li>
+          <li>Data analysis, tables & figures</li>
+          <li>Literature review & discussion</li>
+          <li>University-specific formatting</li>
+          <li>Plagiarism report (under 15%)</li>
+          <li>Unlimited revisions till submission</li>
+          <li>Guide correction support included</li>
+        </ul>
+        <div class="service-price">
+          <span style="text-decoration:line-through; color:rgba(255,255,255,0.35); font-size:1rem; font-family:'DM Sans',sans-serif; font-weight:400;">₹30,000</span>
+          &nbsp;₹25,000
+        </div>
+        <div class="service-price-note">Instalment plans available · Everything included</div>
+      </div>
+
+    </div>
+    <p style="text-align:center; margin-top:2rem; color:var(--text-muted); font-size:0.87rem;">
+      💬 Not sure which package you need? Fill the form and we'll guide you for free.
+    </p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="container">
+    <div class="section-tag">The Process</div>
+    <h2 class="section-title">How It Works</h2>
+    <p class="section-sub">Simple, fast, and designed around your residency schedule.</p>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Fill the Form</h4>
+        <p>Share your specialty, university, timeline, and what help you need.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Free Briefing Call</h4>
+        <p>We'll connect over WhatsApp or call to understand your exact requirements.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Confirm & Pay</h4>
+        <p>Get a firm quote, timeline, and agree on deliverables. Advance payment to begin.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>We Deliver</h4>
+        <p>Receive your document. Review it. Request revisions. We're done when you're happy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECIALTIES -->
+<section id="specialties">
+  <div class="container">
+    <div class="section-tag">We Cover</div>
+    <h2 class="section-title">Specialties We Work In</h2>
+    <p class="section-sub">We have handled protocols and thesis documents across the major clinical and non-clinical specialties.</p>
+    <div class="spec-grid">
+      <span class="spec-pill">General Medicine</span>
+      <span class="spec-pill">General Surgery</span>
+      <span class="spec-pill">Orthopaedics</span>
+      <span class="spec-pill">Obstetrics & Gynaecology</span>
+      <span class="spec-pill">Paediatrics</span>
+      <span class="spec-pill">Anaesthesiology</span>
+      <span class="spec-pill">Ophthalmology</span>
+      <span class="spec-pill">ENT</span>
+      <span class="spec-pill">Dermatology</span>
+      <span class="spec-pill">Psychiatry</span>
+      <span class="spec-pill">Radiology</span>
+      <span class="spec-pill">Pathology</span>
+      <span class="spec-pill">Microbiology</span>
+      <span class="spec-pill">Pharmacology</span>
+      <span class="spec-pill">Community Medicine</span>
+      <span class="spec-pill">Biochemistry</span>
+      <span class="spec-pill">Physiology</span>
+      <span class="spec-pill">Cardiology (DM)</span>
+      <span class="spec-pill">Neurology (DM)</span>
+      <span class="spec-pill">Nephrology (DM)</span>
+      <span class="spec-pill">Pulmonology</span>
+      <span class="spec-pill">Emergency Medicine</span>
+    </div>
+    <p style="margin-top:1.5rem; color:var(--text-muted); font-size:0.87rem;">
+      Don't see your specialty? Fill the form anyway — we cover all disciplines.
+    </p>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section style="background: var(--section-alt);">
+  <div class="container">
+    <div class="section-tag">Our Promise</div>
+    <h2 class="section-title">Why Residents Trust ThesisRx</h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <h4>100% Confidential</h4>
+        <p>Your name, institution, and research details are never shared with anyone. Period.</p>
+      </div>
+      <div class="why-card">
+        <h4>Written by Doctors</h4>
+        <p>Our writers have medical degrees and understand clinical research — not just writing.</p>
+      </div>
+      <div class="why-card">
+        <h4>University-Specific Format</h4>
+        <p>We know the thesis formats of most major Indian universities — RGUHS, MUHS, NTR, BFUHS, AIIMS, and more.</p>
+      </div>
+      <div class="why-card">
+        <h4>WhatsApp-Friendly</h4>
+        <p>No complicated portals. You communicate over WhatsApp like you would with a senior colleague.</p>
+      </div>
+      <div class="why-card">
+        <h4>Deadline Commitment</h4>
+        <p>We agree on a delivery date before we begin, and we stick to it.</p>
+      </div>
+      <div class="why-card">
+        <h4>Revisions Till Approved</h4>
+        <p>Your guide wants changes? We incorporate them without additional charges (within agreed scope).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-tag">Frequently Asked</div>
+    <h2 class="section-title">Questions Residents Ask</h2>
+    <div class="faq-list">
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span>Is this legal and ethical?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a">
+          We provide academic writing assistance and research support — similar to the support provided by statisticians, scientific editors, or professional medical writers who routinely assist in thesis and publication writing in India and globally. You remain the primary researcher and the intellectual owner of your work.
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span>Will my guide/university find out?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a">
+          No. We operate under complete confidentiality. We do not maintain any public records of clients. Every engagement is discreet. Our service relationship stays between you and us.
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span>How do I know the work will be good enough for my guide?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a">
+          We offer revision rounds as part of every package. If your guide asks for changes, we'll incorporate them. We've worked with strict guides across institutions — managing feedback and revisions is part of what we do.
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span>How do I pay? Is it safe?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a">
+          We accept UPI, bank transfer, and all major payment apps. Typically 50% advance to begin, 50% on delivery. You receive the complete document before final payment is cleared.
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span>What if my IEC rejects the protocol?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a">
+          We'll revise the protocol based on the IEC's specific objections at no additional charge (for one round of IEC-related revisions). Our protocols are written with common IEC concerns in mind.
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span>My thesis submission is in 3 months. Is that enough time?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a">
+          Depends on the service. Topic + Protocol can be done in 1–2 weeks. Full thesis writing needs 4–10 weeks depending on data availability and word count. Fill the form and share your timeline — we'll tell you honestly whether we can help.
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span>Do I need to collect data or will you do that too?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a">
+          You collect the clinical data from your hospital — that's your role as the researcher. We handle designing data collection tools, analysis, writing, and interpretation. If you've already collected data, even better.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-glow"></div>
+  <h2>Ready to Begin?</h2>
+  <p>Fill a 2-minute form. We'll get back to you within 24 hours.</p>
+  <!-- REPLACE this href with your actual Google Form link -->
+  <a href="https://forms.gle/YOURFORMLINK" class="btn-primary" target="_blank">Fill the Enquiry Form →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Thesis<span>Rx</span></div>
+    <p>Expert medical thesis support for MD, MS, DNB, and Diploma residents across India.<br/>Confidential · Professional · Delivered on time.</p>
+    <div class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#how">Process</a>
+      <a href="#faq">FAQs</a>
+      <!-- REPLACE with your Google Form or WhatsApp link -->
+      <a href="https://forms.gle/YOURFORMLINK" target="_blank">Contact</a>
+    </div>
+    <div class="disclaimer">
+      ThesisRx provides academic writing assistance and research support services. Clients are responsible for ensuring compliance with their institution's academic integrity policies. All work delivered is original, custom-written, and accompanied by a plagiarism report.
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleFaq(el) {
+    const isOpen = el.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) el.classList.add('open');
+  }
+</script>
+
+</body>
+</html>
