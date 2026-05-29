@@ -355,8 +355,7 @@
     <a href="#how">Process</a>
     <a href="#specialties">Specialties</a>
     <a href="#faq">FAQs</a>
-    <!-- REPLACE this href with your actual Google Form link -->
-    <a href="https://forms.gle/YOURFORMLINK" class="nav-cta" target="_blank">Get Started →</a>
+    <a href="javascript:void(0)" onclick="openModal()" class="nav-cta">Get Started →</a>
   </div>
   <div class="hamburger" onclick="this.classList.toggle('open')">
     <span></span><span></span><span></span>
@@ -374,8 +373,7 @@
       Expert support at every step — from choosing a publishable topic to writing a thesis that clears your university board on the first submission.
     </p>
     <div class="hero-btns">
-      <!-- REPLACE with your Google Form link -->
-      <a href="https://forms.gle/YOURFORMLINK" class="btn-primary" target="_blank">Start Your Thesis Journey →</a>
+      <a href="javascript:void(0)" onclick="openModal()" class="btn-primary">Start Your Thesis Journey →</a>
       <a href="#services" class="btn-outline">See Services</a>
     </div>
     <div class="hero-stats">
@@ -523,6 +521,38 @@
       </div>
 
     </div>
+
+    <!-- Publication Support — full width card -->
+    <div class="pub-card-inner" style="margin-top:1.5rem; border:1px solid var(--border); border-radius:var(--radius); padding:2rem; display:grid; grid-template-columns:1fr 1fr; gap:2rem; align-items:start;">
+      <div>
+        <div style="font-family:'Playfair Display',serif; font-size:2.5rem; color:var(--teal); font-weight:600; line-height:1; margin-bottom:0.8rem;">05</div>
+        <h3 style="font-size:1.15rem; font-weight:600; margin-bottom:0.6rem; color:var(--text-main);">Publications & Academic Writing</h3>
+        <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.65;">
+          Beyond the thesis — we help residents write and structure academic manuscripts for publication. Whether it's an interesting case from your ward or a full systematic review, we help you get it publication-ready.
+        </p>
+        <div style="margin-top:1.2rem; display:flex; flex-wrap:wrap; gap:0.6rem;">
+          <span style="background:var(--teal-light); color:#0a7060; padding:0.3rem 0.85rem; border-radius:100px; font-size:0.8rem; font-weight:500; border:1px solid rgba(14,159,137,0.2);">Case Report</span>
+          <span style="background:var(--teal-light); color:#0a7060; padding:0.3rem 0.85rem; border-radius:100px; font-size:0.8rem; font-weight:500; border:1px solid rgba(14,159,137,0.2);">Case Series</span>
+          <span style="background:var(--teal-light); color:#0a7060; padding:0.3rem 0.85rem; border-radius:100px; font-size:0.8rem; font-weight:500; border:1px solid rgba(14,159,137,0.2);">Review Article</span>
+          <span style="background:var(--teal-light); color:#0a7060; padding:0.3rem 0.85rem; border-radius:100px; font-size:0.8rem; font-weight:500; border:1px solid rgba(14,159,137,0.2);">Systematic Review</span>
+          <span style="background:var(--teal-light); color:#0a7060; padding:0.3rem 0.85rem; border-radius:100px; font-size:0.8rem; font-weight:500; border:1px solid rgba(14,159,137,0.2);">Meta-Analysis</span>
+        </div>
+      </div>
+      <div>
+        <ul class="service-list" style="margin-bottom:1.2rem;">
+          <li>Manuscript writing from scratch or from your notes</li>
+          <li>Journal-specific formatting (ICMJE, Vancouver)</li>
+          <li>Abstract writing — structured & unstructured</li>
+          <li>CARE / PRISMA checklist compliance</li>
+          <li>Cover letter & response to reviewers</li>
+          <li>Target journal selection guidance</li>
+          <li>Plagiarism report included</li>
+        </ul>
+        <div style="font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:700; color:var(--gold);">Pricing on request</div>
+        <div style="font-size:0.78rem; color:var(--text-muted); margin-top:0.2rem;">Depends on type & complexity · Discussed after briefing</div>
+      </div>
+    </div>
+
     <p style="text-align:center; margin-top:2rem; color:var(--text-muted); font-size:0.87rem;">
       💬 Not sure which package you need? Fill the form and we'll guide you for free.
     </p>
@@ -673,7 +703,8 @@
           <span class="icon">+</span>
         </div>
         <div class="faq-a">
-          We accept UPI, bank transfer, and all major payment apps. Typically 50% advance to begin, 50% on delivery. You receive the complete document before final payment is cleared.
+          We accept UPI, bank transfer, and all major payment apps. Our payment structure is straightforward: a small advance is collected to begin work, and the remaining balance is collected in full before the final draft is released to you.<br/><br/>
+          This entire arrangement runs on mutual trust — we trust you to honour the commitment you make when you reach out to us, and you trust us to deliver work that is worth every rupee. We put in significant time, research, and expertise into every project. Releasing final work only after complete payment ensures that our effort is respected, just as we respect your deadline and your trust in us. We have never failed a client who kept their word — and we do not intend to start.
         </div>
       </div>
 
@@ -716,8 +747,7 @@
   <div class="cta-glow"></div>
   <h2>Ready to Begin?</h2>
   <p>Fill a 2-minute form. We'll get back to you within 24 hours.</p>
-  <!-- REPLACE this href with your actual Google Form link -->
-  <a href="https://forms.gle/YOURFORMLINK" class="btn-primary" target="_blank">Fill the Enquiry Form →</a>
+  <a href="javascript:void(0)" onclick="openModal()" class="btn-primary">Fill the Enquiry Form →</a>
 </section>
 
 <!-- FOOTER -->
@@ -729,8 +759,7 @@
       <a href="#services">Services</a>
       <a href="#how">Process</a>
       <a href="#faq">FAQs</a>
-      <!-- REPLACE with your Google Form or WhatsApp link -->
-      <a href="https://forms.gle/YOURFORMLINK" target="_blank">Contact</a>
+      <a href="javascript:void(0)" onclick="openModal()">Contact</a>
     </div>
     <div class="disclaimer">
       ThesisRx provides academic writing assistance and research support services. Clients are responsible for ensuring compliance with their institution's academic integrity policies. All work delivered is original, custom-written, and accompanied by a plagiarism report.
@@ -738,13 +767,150 @@
   </div>
 </footer>
 
+<style>
+  /* MODAL */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 999;
+    background: rgba(7,20,42,0.75); backdrop-filter: blur(6px);
+    align-items: center; justify-content: center; padding: 1.5rem;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal-box {
+    background: white; border-radius: 16px; padding: 2.5rem 2rem;
+    max-width: 460px; width: 100%; position: relative;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.25);
+    animation: fadeUp 0.3s ease;
+  }
+  .modal-close {
+    position: absolute; top: 1rem; right: 1.2rem;
+    font-size: 1.4rem; cursor: pointer; color: var(--text-muted);
+    background: none; border: none; line-height: 1;
+  }
+  .modal-close:hover { color: var(--text-main); }
+  .modal-icon {
+    width: 52px; height: 52px; background: var(--teal-light);
+    border-radius: 14px; display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; margin-bottom: 1.2rem;
+  }
+  .modal-box h3 {
+    font-family: 'Playfair Display', serif; font-size: 1.4rem;
+    color: var(--text-main); margin-bottom: 0.5rem;
+  }
+  .modal-box p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+  .modal-options { display: flex; flex-direction: column; gap: 0.75rem; }
+  .modal-option {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 1.2rem; border-radius: 10px; border: 1.5px solid var(--border);
+    text-decoration: none; transition: border-color 0.2s, background 0.2s;
+    cursor: pointer;
+  }
+  .modal-option:hover { border-color: var(--teal); background: var(--teal-light); }
+  .modal-option .opt-icon {
+    width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+  }
+  .opt-wa .opt-icon { background: #dcfce7; }
+  .opt-mail .opt-icon { background: #e0f2fe; }
+  .modal-option .opt-text strong { font-size: 0.9rem; display: block; color: var(--text-main); }
+  .modal-option .opt-text span { font-size: 0.8rem; color: var(--text-muted); }
+  .modal-note {
+    margin-top: 1.2rem; font-size: 0.78rem; color: var(--text-muted);
+    text-align: center; line-height: 1.6;
+  }
+
+  /* MOBILE NAV */
+  @media (max-width: 680px) {
+    .nav-links.open {
+      display: flex; flex-direction: column;
+      position: absolute; top: 64px; left: 0; right: 0;
+      background: rgba(11,31,58,0.98); padding: 1.2rem 2rem 1.5rem;
+      gap: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .pub-card-inner { grid-template-columns: 1fr !important; }
+  }
+</style>
+
+<!-- CONTACT MODAL -->
+<div class="modal-overlay" id="contactModal" onclick="handleOverlayClick(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-icon">📋</div>
+    <h3>Let's Get Started</h3>
+    <p>Choose how you'd like to reach us. We respond within a few hours.</p>
+    <div class="modal-options">
+      <a class="modal-option opt-form" href="https://forms.gle/vS73RbSSXA3NtkxM7" target="_blank" style="border-color:var(--teal); background:var(--teal-light);">
+        <div class="opt-icon" style="background:#b2ede4;">📋</div>
+        <div class="opt-text">
+          <strong>Fill the Enquiry Form</strong>
+          <span>2 minutes · We'll call you back within 24 hours</span>
+        </div>
+      </a>
+      <a class="modal-option opt-wa" href="https://wa.me/917582840909?text=Hi%20ThesisRx!%20I%20need%20help%20with%20my%20medical%20thesis." target="_blank">
+        <div class="opt-icon">💬</div>
+        <div class="opt-text">
+          <strong>WhatsApp Us</strong>
+          <span>+91 75828 40909 · Fastest response</span>
+        </div>
+      </a>
+      <a class="modal-option opt-mail" href="mailto:thesisrx1@gmail.com?subject=Thesis%20Enquiry&body=Hi%20ThesisRx%20Team%2C%0A%0AI%20need%20help%20with%20my%20thesis.%0A%0ASpecialty%3A%0AUniversity%3A%0AService%20needed%3A%0A%0AThanks">
+        <div class="opt-icon">✉️</div>
+        <div class="opt-text">
+          <strong>Email Us</strong>
+          <span>thesisrx1@gmail.com · Reply within 24 hours</span>
+        </div>
+      </a>
+    </div>
+    <p class="modal-note">🔒 All enquiries are completely confidential.<br/>We never share your details with anyone.</p>
+  </div>
+</div>
+
 <script>
+  // FAQ accordion
   function toggleFaq(el) {
     const isOpen = el.classList.contains('open');
     document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
     if (!isOpen) el.classList.add('open');
   }
+
+  // Modal
+  function openModal() {
+    document.getElementById('contactModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('contactModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('contactModal')) closeModal();
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // Smooth scroll for ALL anchor links (fixes local file + browser quirks)
+  document.addEventListener('click', function(e) {
+    const link = e.target.closest('a[href^="#"]');
+    if (!link) return;
+    const id = link.getAttribute('href').slice(1);
+    if (!id) return;
+    const target = document.getElementById(id);
+    if (!target) return;
+    e.preventDefault();
+    const navH = document.querySelector('nav').offsetHeight;
+    const top  = target.getBoundingClientRect().top + window.scrollY - navH - 12;
+    window.scrollTo({ top, behavior: 'smooth' });
+    // close mobile menu if open
+    document.querySelector('.nav-links').classList.remove('open');
+    document.querySelector('.hamburger').classList.remove('open');
+  });
+
+  // Hamburger menu
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks  = document.querySelector('.nav-links');
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    hamburger.classList.toggle('open');
+  });
 </script>
 
 </body>
-</html> 
+</html>
